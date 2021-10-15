@@ -1,5 +1,6 @@
 //Library imports
 import React from 'react';
+import './App.css';
 import { ChakraProvider, Box, VStack, Grid, theme,} from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
