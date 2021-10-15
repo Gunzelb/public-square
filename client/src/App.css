@@ -1,0 +1,29 @@
+.post-container{
+    position: relative;
+    width: max-content;
+    height: max-content;
+    margin-left: 2%;
+    /* background-color: rosybrown; */
+}
+
+.post-date{
+    position: absolute;
+    transform: translate(0%, -50%);
+    top:-12%;
+    left: 3%;
+    z-index: 1;
+    /* background-color: cadetblue; */
+    /* color: seashell; */
+    font-size: 75%;
+}
+
+.post-editBtn{
+    position: absolute;
+    transform: translate(0%, -50%);
+    bottom: -25%;
+    right: 3%;
+    z-index: 1;
+    /* color: seashell; */
+    /* background-color: cadetblue; */
+    font-size: 75%;
+}
