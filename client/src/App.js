@@ -4,8 +4,8 @@ import { ChakraProvider, Box, VStack, Grid, theme,} from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 // Components
-import LoginForm from './components/LoginForm';
-// import SignupForm from './components/SignupForm';
+// import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 // import Posts from './components/Posts';
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh">
           <ColorModeSwitcher justifySelf="flex-end" />
-            <LoginForm />
-            {/* <SignupForm /> */}
+            {/* <LoginForm /> */}
+            <SignupForm />
             {/* <Posts/> */}
         </Grid>
       </Box>

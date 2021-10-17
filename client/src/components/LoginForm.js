@@ -12,6 +12,8 @@ function LoginForm() {
     const [password, setPassword] = useState("");
 
     const handleInputChange = (e) => {
+        e.preventDefault()
+
         // Getting the value and name of the input which triggered the change
         const inputType = e.target.name;
         const inputValue = e.target.value;
@@ -36,7 +38,7 @@ function LoginForm() {
 
 
     return (
-        <Flex direction="column" border="1px" p={12} rounded={6}>
+        <Flex direction="column" justifySelf="center" alignSelf="start" border="1px" p={12} rounded={6} width="40%">
             <Heading mb={6}>Log in</Heading>
             <FormControl id="email" isRequired>
                 
