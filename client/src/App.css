@@ -2,28 +2,22 @@
     position: relative;
     width: max-content;
     height: max-content;
-    margin-left: 2%;
-    /* background-color: rosybrown; */
+    min-width: 80%;
+    margin-left: 1%;
 }
 
 .post-date{
-    position: absolute;
-    transform: translate(0%, -50%);
-    top:-12%;
-    left: 3%;
+    position: relative;
+    top: -35px;
     z-index: 1;
-    /* background-color: cadetblue; */
-    /* color: seashell; */
     font-size: 75%;
+    width: max-content;
 }
 
 .post-editBtn{
-    position: absolute;
-    transform: translate(0%, -50%);
-    bottom: -25%;
-    right: 3%;
+    position: relative;
+    bottom: -34px;
+    right: 0%;
     z-index: 1;
-    /* color: seashell; */
-    /* background-color: cadetblue; */
     font-size: 75%;
 }
