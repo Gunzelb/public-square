@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 //Chakra
 import { Flex, Input, Heading, Button } from "@chakra-ui/react";
 import { FormControl, FormLabel } from "@chakra-ui/react";
-// import ToastExample from "./themedComponents/Toast";
 import { useToast } from "@chakra-ui/react";
 
 
@@ -11,7 +10,12 @@ import { useToast } from "@chakra-ui/react";
 
 function SignupForm() {
 
+    //Toast variables
     const toast = useToast();
+    const [status, setStatus] = useState(false);
+    const [title, setTitle] = useState("It Works!");
+    const [description, setDescription] = useState("Omg it really did it"); 
+    const [toastType, setToastType] = useState('error');
 
     //Form states
     const [firstName, setFirstName] = useState("");
@@ -21,21 +25,20 @@ function SignupForm() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    //Toast state
-    const [status, setStatus] = useState(false);
+
 
     useEffect(() => {
         if (status) {
             toast({
-                title: "It Works!",
-                description: "Omg it really did it",
-                status: 'success',
-                duration: 5000,
+                title: title,
+                description: description,
+                status: toastType,
+                duration: 3000,
                 isClosable: true
             });
             setStatus(false)
         }
-    }, [status, toast]);
+    }, [status, toast, title, description, toastType]);
 
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
@@ -81,11 +84,19 @@ function SignupForm() {
         }
 
         console.log(Signup);
+        
         if (password !== confirmPassword) {
             console.log("Passwords do not match!");
+            setTitle("Error");
+            setDescription("Passwords do not match!");
+            setToastType('error')
+            setStatus(true)
             return
         }
         else {
+            setTitle( "Account created");
+            setDescription("");
+            setToastType('success');
             setStatus(true)
 
             //Set the states to empty strings
