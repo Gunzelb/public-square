@@ -7,6 +7,7 @@ const posts = [
         name: "Felicia",
         message: "Hi peeps",
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        isPrivate: false,
         comments: [ 
             {
                 name: "Michael Myers",
@@ -22,6 +23,7 @@ const posts = [
         name: "Michael Myers",
         message: "Bye Felicia",
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        isPrivate: false,
         comments: [ 
             {
                 name: "Michael Myers",
@@ -37,6 +39,7 @@ const posts = [
         name: "Jason Todd",
         message: "Hello! Is it me you're looking for?",
         date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        isPrivate: true,
         comments: [ 
             {
                 name: "Michael Myers",
@@ -55,10 +58,11 @@ const posts = [
 ]
 
 
-function Posts() {
+function Posts({editPost}) {
     return (
             <>
-            { posts.map((post, i) => (<Post key={i} name={post.name} message={post.message} date={post.date} comments={post.comments} />)) }
+            { posts.map((post, i) => (<Post key={i} name={post.name} message={post.message} 
+                isPrivate={post.isPrivate} date={post.date} comments={post.comments} editPost={editPost} />)) }
             </>
     )
 };

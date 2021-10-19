@@ -1,6 +1,6 @@
 //Library imports
 import React from 'react';
-import { ChakraProvider, theme,} from '@chakra-ui/react'; //VStack, Box, Grid,
+import { ChakraProvider, theme, Grid} from '@chakra-ui/react'; //VStack, Box, Grid,
 // import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 // Components
@@ -14,14 +14,14 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       {/* <Box textAlign="center" fontSize="xl"> */}
-        {/* <Grid minH="100vh"> */}
+        <Grid minH="100vh">
             < Header />
             {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
             {/* <LoginForm /> */}
             {/* <SignupForm /> */}
             {/* <Posts/> */}
             < User />
-        {/* </Grid> */}
+        </Grid>
       {/* </Box> */}
     </ChakraProvider>
   );

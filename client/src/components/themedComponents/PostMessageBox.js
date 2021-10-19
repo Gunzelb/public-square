@@ -10,7 +10,7 @@ import { EditIcon } from "@chakra-ui/icons";
 import Comment from "../Comment";
 import AddComment from "../AddComment";
 
-function StyleColorMode({ date, message, comments}) {
+function StyleColorMode({ date, message, isPrivate, comments, editPost}) {
 
     const bg = useColorModeValue("cyan.200", "cyan.800");
     const bg_gray = useColorModeValue("gray.200", "gray.700");
@@ -23,7 +23,7 @@ function StyleColorMode({ date, message, comments}) {
                 <Text className="post-date" bg={bg} p={1} rounded={8} border="1px" mt={3}>
                     {date}
                 </Text>
-                <Text border="1px" text="start" bg={bg} rounded={8} m={2} p={5}>
+                <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
                     {message}
                 </Text>
 
@@ -35,7 +35,7 @@ function StyleColorMode({ date, message, comments}) {
                     <AddComment display="block" bg={bg} comment_bg={comment_bg} border="1px" comments={comments} />
                 </Flex>
                 <Flex justifyContent="end">
-                    <Button  className="post-editBtn" size="sm" bg={bg} variant="solid"> <EditIcon /></Button>
+                    <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={editPost}> <EditIcon /></Button>
                 </Flex>
 
             </Box>

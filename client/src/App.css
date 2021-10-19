@@ -7,11 +7,12 @@
 }
 
 .post-date{
-    position: relative;
-    top: -35px;
+    position: absolute;
+    top: -28px;
     z-index: 1;
     font-size: 75%;
     width: max-content;
+    height: max-content;
 }
 
 .post-editBtn{
