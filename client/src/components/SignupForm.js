@@ -71,7 +71,15 @@ function SignupForm() {
 
 
         //Check if the input is empty
-        if(!firstName || !lastName || !email || !username || !password || !confirmPassword){return}
+        if(!firstName || !lastName || !email || !username 
+            || !password || !confirmPassword){
+            
+            
+                setTitle("Error");
+                setDescription("Missing Fields");
+                setToastType('error')
+                return
+        }
 
 
         const Signup = {
@@ -117,10 +125,10 @@ function SignupForm() {
     }
 
     return (
-        <Flex direction="column" border="1px" p={10} rounded={10} justifySelf="center"
+        <Flex direction="column" border="1px" p={8} m={5} rounded={10} justifySelf="center"
             alignSelf="start" width="45%">
             {/* <form onSubmit={handleSubmit}> */}
-            <Heading mb={4}>Sign up</Heading>
+            <Heading textAlign="center" mb={4}>Sign up</Heading>
             <Flex direction="row">
                 <FormControl id="firstname" mr={4} isRequired>
                     <FormLabel>First Name</FormLabel>
@@ -154,7 +162,7 @@ function SignupForm() {
                     name="confirmPassword" onChange={handleInputChange} value={confirmPassword} />
             </FormControl>
             {/* </form> */}
-            <Button colorScheme="cyan" variant="outline" onClick={handleSubmit} type="submit">
+            <Button width="50%" alignSelf="center" colorScheme="cyan" variant="outline" onClick={handleSubmit} type="submit">
                 Submit
             </Button>
         </Flex>
