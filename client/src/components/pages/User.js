@@ -8,14 +8,14 @@ import Posts from '../Posts'
 import moment from 'moment';
 
 //Chakra Components
-import { Box, Heading, Button, Flex } from '@chakra-ui/react'
+import { Box, Heading, Button, Flex, Spacer } from '@chakra-ui/react' // Text, VStack,
 import { useDisclosure } from "@chakra-ui/react";
 import {
     Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
+    //ModalFooter,
     ModalBody,
     ModalCloseButton,
 } from "@chakra-ui/react"
@@ -24,8 +24,66 @@ import {
     //FormLabel, 
     Input
 } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react"
+import { DeleteIcon } from "@chakra-ui/icons";
 
-
+const onloadPosts = [
+    {
+        id: 1,
+        name: "Felicia",
+        message: "Ya like jazz? XD",
+        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        isPrivate: true,
+        comments: [
+            {
+                name: "Michael Myers",
+                message: "First to comment"
+            },
+            {
+                name: "Jason Todd",
+                message: "lol"
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: "Michael Myers",
+        message: "Bye Felicia",
+        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        isPrivate: false,
+        comments: [
+            {
+                name: "Michael Myers",
+                message: "First to comment"
+            },
+            {
+                name: "Jason Todd",
+                message: "lol"
+            }
+        ]
+    },
+    {
+        id: 3,
+        name: "Jason Todd",
+        message: "Hello! Is it me you're looking for?",
+        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        isPrivate: false,
+        comments: [
+            {
+                name: "Michael Myers",
+                message: "First to comment"
+            },
+            {
+                name: "Jason Todd",
+                message: "be quiet Michael!"
+            },
+            {
+                name: "Felicia",
+                message: "This chat is toxic XD"
+            }
+        ]
+    }
+]
 
 function User() {
 
@@ -34,12 +92,12 @@ function User() {
     const [modalHeader, setModalHeader] = useState("")
     const [isPrivate, setIsPrivate] = useState("");
     const [message, setMessage] = useState("");
+    const [id, setId] = useState("");
+    const [posts, setPosts] = useState(onloadPosts);
 
-
-    const addPostForm = (e) => {
-
+    const addPostForm = (e, postType) => {
+        setMessage("")
         //Set the isPrivate value to true/false depending on which post button was clicked
-        const postType = (e.target.id === "Private") ? true : false;
         setIsPrivate(postType);
 
         //Set Modal Header as Add Post
@@ -48,13 +106,18 @@ function User() {
         onOpen()
     }
 
-    const editPost = (e) => {
+    const editPost = (e, post_id, post_isPrivate) => {
+        e.preventDefault()
         //Set the isPrivate value to true/false depending on which post button was clicked
-        const postType = (e.target.id === "Private") ? true : false;
-        setIsPrivate(postType);
+        setIsPrivate(post_isPrivate);
+        
+        console.log(post_id);
+        const currentPost = posts.find(post => post.id === post_id)
 
+        setMessage(currentPost.message);
+        setId(post_id)
         //Set Modal Header as Add Post
-        setModalHeader(`Edit ${e.target.id} Post`);
+        setModalHeader("Edit Post");
         //Open Modal
         onOpen()
     }
@@ -71,24 +134,45 @@ function User() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newPost = {
-            author: "SignedIn Account",
-            message: message,
-            date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-            isPrivate: isPrivate,
-            comments: []
+        if (modalHeader === "Edit Post") {
+            posts[id-1].message = message;
+            setMessage("")
         }
+        else {
+            const newPost = {
+                id: posts.length,
+                name: "SignedIn Account",
+                message: message,
+                date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+                isPrivate: isPrivate,
+                comments: []
+            }
+            const newPostArr = [...posts, newPost]
+            console.log(newPostArr);
+            setPosts(newPostArr)
+        }
+        
+        onClose()
+    }
 
-        console.log(newPost);
+    const deletePostHandler = (e) => {
+        console.log(`${e.target.id} : Delete Post button pressed`);
+        console.log(posts);
+        setPosts(posts.filter(
+            (post) => { return post.id !== id }))
+        console.log(posts);
+        onClose()
     }
 
     return (
         <>
             <Box textAlign="center">
-                <Heading textDecoration="underline">Post in the Square</Heading>
+                <Heading textDecoration="underline" mb={2}>Post in the Square</Heading>
+                {/* <Heading textDecoration="underline" mb={2}>Name Profile</Heading> */}
                 <Flex justifyContent="center">
-                    <Button border="1px" id="Public" onClick={addPostForm} m={2}> Public Post </Button>
-                    <Button border="1px" id="Private" onClick={addPostForm} m={2} > Private Post </Button>
+                    <Button border="1px" id="Public" onClick={(e) => {addPostForm(e, false)}} m={6}> Public Post </Button>
+                    <Button border="1px" id="Private" onClick={(e) => {addPostForm(e, true)}} m={6} > Private Post </Button>
+                    {/* <Button border="1px" id="Private" onClick={addPostForm} m={6} > Add Friend </Button> */}
                 </ Flex>
             </Box>
 
@@ -111,32 +195,25 @@ function User() {
 
                         </FormControl>
 
-                        {/* <FormControl id="password" isRequired>
-                            <FormLabel>Password</FormLabel>
-                            <Input
-                                type="password"
-                                name="password"
-                                placeholder="********"
-                                variant="filled"
-                                mb={3}
-                                value={password}
-                                onChange={handleInputChange}
-                            />
-                        </FormControl> */}
-
                     </ModalBody>
+                    <Flex p={3}>
+                        {
+                            (modalHeader === "Edit Post") ?
+                                (<IconButton variant="ghost" colorScheme="pink" icon={<DeleteIcon />}
+                                    onClick={deletePostHandler} size="lg" />)
+                                : (<></>)
+                        }
+                        <Spacer />
+                        <Button colorScheme="pink" variant="outline" mr={3} onClick={onClose}>Cancel</Button>
 
-                    <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                        <Button variant="ghost" onClick={handleSubmit}>Submit</Button>
-                    </ModalFooter>
+                        <Button colorScheme="cyan" variant="outline" onClick={handleSubmit}>Submit</Button>
+                    </Flex>
                 </ModalContent>
             </Modal>
-
-
-            <Posts editPost={editPost} />
+            <Flex direction="column" alignContent="start" width="100%">
+                <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
+                <Posts ms={1} posts={posts} editPost={editPost} />
+            </Flex>
         </>
     )
 }
