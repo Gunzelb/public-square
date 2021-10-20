@@ -48,11 +48,12 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { postText }, context) => {
+    addPost: async (parent, { postText, private }, context) => {
       if (context.user) {
         const post = await Post.create({
           postText,
           postAuthor: context.user.username,
+          private: private
         });
 
         await User.findOneAndUpdate(
