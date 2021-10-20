@@ -88,8 +88,8 @@ function LoginForm() {
 
 
     return (
-        <Flex direction="column" justifySelf="center" alignSelf="start" border="1px" p={12} rounded={6} width="40%">
-            <Heading mb={6}>Log in</Heading>
+        <Flex direction="column" border="1px" p={8} me={3} rounded={6} width="30%">
+            <Heading mb={6} color="cyan.600">Log in</Heading>
             <FormControl id="email" isRequired>
 
                 <FormLabel>Email address</FormLabel>

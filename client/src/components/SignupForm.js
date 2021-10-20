@@ -125,10 +125,9 @@ function SignupForm() {
     }
 
     return (
-        <Flex direction="column" border="1px" p={8} m={5} rounded={10} justifySelf="center"
-            alignSelf="start" width="45%">
+        <Flex direction="column" border="1px" px={7} py={3} rounded={10} width="40%">
             {/* <form onSubmit={handleSubmit}> */}
-            <Heading textAlign="center" mb={4}>Sign up</Heading>
+            <Heading mb={4} p={2} color="cyan.600">Sign up</Heading>
             <Flex direction="row">
                 <FormControl id="firstname" mr={4} isRequired>
                     <FormLabel>First Name</FormLabel>
@@ -151,7 +150,8 @@ function SignupForm() {
                 <Input type="email" placeholder="janedoe@email.com" variant="filled" mb={3}
                     name="email" value={email} onChange={handleInputChange} />
             </FormControl>
-            <FormControl id="password" isRequired>
+            <Flex direction="row">
+            <FormControl id="password" mr={4} isRequired>
                 <FormLabel>Password</FormLabel>
                 <Input type="password" placeholder="********" variant="filled" mb={3} autoComplete="new-password"
                     name="password" onChange={handleInputChange} value={password} />
@@ -161,6 +161,7 @@ function SignupForm() {
                 <Input type="password" placeholder="********" variant="filled" mb={3} autoComplete="new-password"
                     name="confirmPassword" onChange={handleInputChange} value={confirmPassword} />
             </FormControl>
+            </Flex>
             {/* </form> */}
             <Button width="50%" alignSelf="center" colorScheme="cyan" variant="outline" onClick={handleSubmit} type="submit">
                 Submit
