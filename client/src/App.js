@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+//Library imports
+import React from 'react';
+import { ChakraProvider, Box, VStack, Grid, theme,} from '@chakra-ui/react';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
+
+// Components
+// import LoginForm from './components/LoginForm';
+// import SignupForm from './components/SignupForm';
+import Post from './components/Post';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Box textAlign="center" fontSize="xl">
+        <Grid minH="100vh" p={3}>
+          <ColorModeSwitcher justifySelf="flex-end" />
+          <VStack spacing={8}>
+            {/* <LoginForm /> */}
+            {/* <SignupForm /> */}
+            <Post/>
+          </VStack>
+        </Grid>
+      </Box>
+    </ChakraProvider>
   );
 }
 
