@@ -5,12 +5,13 @@ dark/light themes of the Post
 
 //Imports
 import React from "react";
-import { useColorModeValue, Box, Text, Flex, Button } from "@chakra-ui/react";
+import { useColorModeValue, Text, Flex, Button } from "@chakra-ui/react"; //Box,
+import { Badge } from "@chakra-ui/react"
 import { EditIcon } from "@chakra-ui/icons";
 import Comment from "../Comment";
 import AddComment from "../AddComment";
 
-function StyleColorMode({ date, message, isPrivate, comments, editPost}) {
+function StyleColorMode({ post_id, date, message, isPrivate, comments, editPost}) {
 
     const bg = useColorModeValue("cyan.200", "cyan.800");
     const bg_gray = useColorModeValue("gray.200", "gray.700");
@@ -18,11 +19,15 @@ function StyleColorMode({ date, message, isPrivate, comments, editPost}) {
 
     return (
         <>
-            <Box bg={bg_gray} border="1px" p={4} rounded={8} className="post-container">
+            <Flex direction="column" bg={bg_gray} border="1px" p={4} rounded={8} className="post-container">
 
                 <Text className="post-date" bg={bg} p={1} rounded={8} border="1px" mt={3}>
                     {date}
                 </Text>
+                {
+                    !(isPrivate) ? 
+                    <Badge width="max-content" alignSelf="end" mb={2} colorScheme="green" >Public</Badge> 
+                    : <Badge width="max-content"  alignSelf="end" mb={2} colorScheme="red">Private</Badge>}
                 <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
                     {message}
                 </Text>
@@ -35,10 +40,10 @@ function StyleColorMode({ date, message, isPrivate, comments, editPost}) {
                     <AddComment display="block" bg={bg} comment_bg={comment_bg} border="1px" comments={comments} />
                 </Flex>
                 <Flex justifyContent="end">
-                    <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={editPost}> <EditIcon /></Button>
+                    <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button>
                 </Flex>
 
-            </Box>
+            </Flex>
         </>
     );
 }

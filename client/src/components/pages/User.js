@@ -32,7 +32,7 @@ const onloadPosts = [
         id: 1,
         name: "Felicia",
         message: "Ya like jazz? XD",
-        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        date: Date.now(),
         isPrivate: true,
         comments: [
             {

@@ -16,7 +16,7 @@ export default function Header(props) {
 
   return (
     <nav>
-      <HStack spacing="auto" mx={3} mb={3}>
+      <HStack spacing="auto" mx={3} p={3} mb={5} borderBottom="1px">
 
         {/* Search Bar */}
         <Box ms={2}>
@@ -43,7 +43,7 @@ export default function Header(props) {
         {/* Nav Links */}
         <Box>
           <ButtonGroup>
-            <Button>Home</Button>
+            <Button onClick={() => document.location.replace("/")}>Home</Button>
             <Button>Profile</Button>
             <Button>Friends</Button>
           </ButtonGroup>

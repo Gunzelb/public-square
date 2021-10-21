@@ -12,9 +12,11 @@ function AddComment({ bg, comment_bg, comments }) {
   const { isOpen, onToggle } = useDisclosure()
 
   const [comment, setComment] = useState("");
+  // const [commentsArray, setCommentsArray] = useState(comments)
 
   //Form Handlers
   const handleInputChange = (e) => { setComment(e.target.value) }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(comment);
@@ -22,7 +24,10 @@ function AddComment({ bg, comment_bg, comments }) {
     console.log(comments);
     
     const newComment = {name: "Timmy Turner", message: comment} 
-    comments.push(newComment);
+    // comments
+    // const newCommentsArray = [...commentsArray, newComment];
+    comments.push(newComment)
+    // setCommentsArray(newCommentsArray)
 
     console.log("Comment added!");
     console.log(comments);

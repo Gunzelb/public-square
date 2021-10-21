@@ -7,7 +7,7 @@ import {Flex} from '@chakra-ui/react'
 
 const LoginSignUp = () => {
     return(
-        <Flex justify="space-evenly" align="center">
+        <Flex justify="space-evenly" align="center" m={4}>
             <LoginForm />
             <SignupForm />
         </Flex>
