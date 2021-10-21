@@ -1,23 +1,37 @@
 const { Schema, model } = require("mongoose");
 
 const postSchema = new Schema({
-  body: {
+  postText: {
     type: String,
     trim: true,
     required: "Empty posts cannot be made",
   },
 
-  user: {
+  postAuthor: {
       type: Schema.Types.ObjectId,
       ref: 'User'
   },
 
-  postCreated: {
+  createdAt: {
       type: Date,
       default: Date.now
   },
 
-  isPrivate: Boolean,
+  private: Boolean,
+
+  comments: [
+    {
+      commentText: {
+        type: String,
+        required: "Empty comments cannot be made",
+        minlength: 1,
+      },
+      commentAuthor: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    }
+  ]
 });
 
 const Post = model('Post', postSchema)

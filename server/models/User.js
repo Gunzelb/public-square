@@ -37,11 +37,6 @@ const userSchema = new Schema({
     ],
   },
 
-  userCreated: {
-    type: Date,
-    default: Date.now,
-  },
-
   posts: [
     {
       type: Schema.Types.ObjectId,
