@@ -37,12 +37,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost(
-    $postText: String!
-    $postAuthor: String!
-    $private: Boolean!
-  ) {
-    addPost(postText: $postText, postAuthor: $postAuthor, private: $private) {
+  mutation addPost($postText: String!, $private: Boolean!) {
+    addPost(postText: $postText, private: $private) {
       _id
       postText
       postAuthor

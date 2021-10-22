@@ -19,7 +19,6 @@ import {
 import Auth from '../utils/auth';
 
 import { ADD_POST } from '../utils/mutations';
-import { QUERY_POSTS, QUERY_ME } from '../utils/queries';
 
 const AddPostModal = () => {
   //States
@@ -29,26 +28,7 @@ const AddPostModal = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [addPost, { error }] = useMutation(ADD_POST, {
-    update(cache, { data: { addPost } }) {
-      try {
-        const { posts } = cache.readQuery({ query: QUERY_POSTS });
-
-        cache.writeQuery({
-          query: QUERY_POSTS,
-          data: { posts: [addPost, ...posts] },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, posts: [...me.posts, addPost] } },
-      });
-    },
-  });
+  const [addPost, { error }] = useMutation(ADD_POST);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -74,14 +54,16 @@ const AddPostModal = () => {
     e.preventDefault();
 
     try {
-      await addPost({
-        variables: {
-          postText,
-          postAuthor: Auth.getProfile().data.username,
-          private: isPrivate,
-        },
+      const payload = {
+        postText,
+        postAuthor: Auth.getProfile().data.username,
+        private: isPrivate,
+      };
+      console.log(payload);
+      const { data } = await addPost({
+        variables: { ...payload },
       });
-
+      console.log(data);
       setPostText('');
     } catch (err) {
       console.log(err);

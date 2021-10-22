@@ -8,7 +8,7 @@ const PostList = ({ posts }) => {
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
-
+  // let datecreated = moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')
   return (
     <div>
       {posts &&
@@ -26,7 +26,7 @@ const PostList = ({ posts }) => {
               <StyleColorMode
                 post_id={post._id}
                 message={post.postText}
-                date={moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                date={post.createdAt}
                 isPrivate={post.private}
                 comments={post.comments}
               />
