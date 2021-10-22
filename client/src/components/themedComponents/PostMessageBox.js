@@ -26,6 +26,10 @@ function StyleColorMode({
   handleSubmit,
   onChangeMessage,
 }) {
+  const bg = useColorModeValue('cyan.200', 'cyan.800');
+  const bg_gray = useColorModeValue('gray.200', 'gray.700');
+  const comment_bg = useColorModeValue('gray.300', 'gray.600');
+
   return (
     <>
       <Flex

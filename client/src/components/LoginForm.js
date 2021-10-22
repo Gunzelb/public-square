@@ -75,8 +75,8 @@ function LoginForm() {
         const { data } = await loginUser({
           variables: { ...formState },
         });
-
-        Auth.login(data.loginUser.token);
+        console.log(data);
+        Auth.login(data.login.token);
       } catch (err) {
         console.log(error);
         console.log(err);
