@@ -2,55 +2,108 @@ import React from 'react';
 import {
   Box,
   Input,
+  // Img,
   IconButton,
   InputGroup,
   Button,
   ButtonGroup,
-  HStack
+  HStack,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from "../ColorModeSwitcher";
 import { SearchIcon } from '@chakra-ui/icons';
+// import PSLogo from "./PSLogoLight.gif";
+import Friendlink from './themedComponents/Friendlink';
+// import LoginSignUp from './components/pages/LoginSignup';
 import StyleColorMode from './themedComponents/Logo';
 
-export default function Header(props) {
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-  return (
+
+export default function Header ({loggedIn, setLoggedIn, names}) { 
+  return(
     <nav>
-      <HStack spacing="auto" mx={3} p={3} mb={5} borderBottom="1px">
-
-        {/* Search Bar */}
-        <Box ms={2}>
-          <InputGroup size="sm">
-            <Input
-              id="search"
-              width="10rem"
-              placeholder="Search..."
-            />
-            <IconButton
-              id="searchButton"
-              aria-label="search the directory"
-              icon={<SearchIcon />}
-              onClick={() => console.log(document.getElementById("search").value)}
-            />
-          </InputGroup>
-        </Box>
-
-        {/* Logo */}
-        <Box>
+      <Button onClick={() => setLoggedIn(!loggedIn)}>Test</Button>
+      {loggedIn ? (
+        <HStack spacing="auto" padding="1.5%">
+    
+            {/* Search Bar */}
+          <Box>  
+            <InputGroup size="sm">
+              <Input
+                id = "search"
+                width = "10rem"
+                placeholder = "Search..."
+              />
+              <IconButton
+                  id = "searchButton"
+                  aria-label = "search the directory"
+                  icon = { <SearchIcon/> }
+                  onClick = { () => console.log(document.getElementById("search").value) }
+              />
+            </InputGroup>
+          </Box>
+        
+              {/* Logo */}
+          {/* <Box>
+              <Img 
+              height="50px" 
+              maxwidth="200px"
+              // src = {<SwitchLogo/>}
+              src = { PSLogo }
+              />
+          </Box> */}
           <StyleColorMode />
-        </Box>
 
-        {/* Nav Links */}
-        <Box>
-          <ButtonGroup>
-            <Button onClick={() => document.location.replace("/")}>Home</Button>
-            <Button>Profile</Button>
-            <Button>Friends</Button>
-          </ButtonGroup>
-          <ColorModeSwitcher justifySelf="flex-end" />
-        </Box>
+            {/* Nav Links */}
+          <Box>
+            <ButtonGroup>
+              <Button>Home</Button>
+              <Button>Profile</Button>
+              <Friendlink names={names} />
+              <Button onClick={() => setLoggedIn(false)}>Logout</Button>
+            </ButtonGroup>
+          </Box>
 
-      </HStack>
+        </HStack>
+      ) : (
+        <HStack spacing="auto" padding="1.5%">
+    
+            {/* Search Bar */}
+          <Box>  
+            <InputGroup size="sm">
+              <Input
+                id = "search"
+                width = "10rem"
+                placeholder = "Search..."
+              />
+              <IconButton
+                  id = "searchButton"
+                  aria-label = "search the directory"
+                  icon = { <SearchIcon/> }
+                  onClick = { () => console.log(document.getElementById("search").value) }
+              />
+            </InputGroup>
+          </Box>
+        
+              {/* Logo */}
+          {/* <Box>
+              <Img 
+              height="50px" 
+              maxwidth="200px"
+              // src = {<SwitchLogo/>}
+              src = { PSLogo }
+              />
+              <Button onClick = { () => setLoggedIn(!loggedIn) }>Test</Button>
+          </Box> */}
+          <StyleColorMode />
+
+            {/* Nav Links */}
+          <Box>
+            <ButtonGroup>
+              <Button>Register/Login</Button>
+            </ButtonGroup>
+          </Box>
+
+        </HStack>
+      )}
     </nav>
-  )
-};
+  );};
