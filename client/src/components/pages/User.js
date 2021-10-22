@@ -489,18 +489,18 @@ function User() {
                 </ Flex>
             </Box>
 
-            <Flex direction="column" alignContent="start" width="100%">
-                <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
+            {/* <Flex direction="column" alignContent="start" width="100%"> */}
+                {/* <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading> */}
                 <PostList
                     s={1}
-                    posts={[]}
+                    posts={user.posts}
                     editPost={editPost}
                     modalHeader={modalHeader}
                     handleInputChange={handleInputChange}
                     //   deletePostHandler={deletePostHandler} 
                     handleSubmit={handleSubmit} onChangeMessage={message}
                 />
-            </Flex>
+            {/* </Flex> */}
         </>
     )
 }
