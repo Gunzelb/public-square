@@ -35,12 +35,12 @@ const AddPostModal = ({message, setMessage, setIsPrivate, handleInputChange, han
         setModalHeader(`Add ${e.target.id} Post`);
 
         //Open Modal
-        onOpen()
+       
     }
 
     return (
         <>
-            <Button border="1px" id="Private" onClick={(e) => { addPostForm(e, true) }} m={6} > Private Post </Button>
+            <Button border="1px" id="Private" onClick={(e) => { addPostForm(e, true); onOpen() }} m={6} > Private Post </Button>
             <Button border="1px" id="Public" onClick={(e) => {addPostForm(e, false)}} m={6}> Public Post </Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
