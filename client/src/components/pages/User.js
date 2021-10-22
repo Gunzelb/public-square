@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 
-import { QUERY_ME, QUERY_USER } from '.../utils/queries';
-import { ADD_POST, EDIT_POST, DELETE_POST } from '.../utils/mutations';
-import Auth from '.../utils/auth';
+import { QUERY_ME, QUERY_USER } from '../../utils/queries';
+import { ADD_POST, EDIT_POST, DELETE_POST } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 //Components
 import PostList from '../PostList';
@@ -172,33 +172,21 @@ function User() {
         console.log(err);
         console.log(error);
       }
-      const newPost = {
-        id: posts.length,
-        name: 'SignedIn Account',
-        message: message,
-        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-        isPrivate: isPrivate,
-        comments: [],
-      };
-      const newPostArr = [...posts, newPost];
-      console.log(newPostArr);
-      setPosts(newPostArr);
+
+      onClose();
     }
-
-    onClose();
   };
-
-  const deletePostHandler = e => {
-    console.log(`${e.target.id} : Delete Post button pressed`);
-    console.log(posts);
-    setPosts(
-      posts.filter(post => {
-        return post.id !== id;
-      })
-    );
-    console.log(posts);
-    onClose();
-  };
+  // const deletePostHandler = e => {
+  //   console.log(`${e.target.id} : Delete Post button pressed`);
+  //   console.log(posts);
+  //   setPosts(
+  //     posts.filter(post => {
+  //       return post.id !== id;
+  //     })
+  //   );
+  //   console.log(posts);
+  //   onClose();
+  // };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -271,7 +259,7 @@ function User() {
                 variant="ghost"
                 colorScheme="pink"
                 icon={<DeleteIcon />}
-                onClick={deletePostHandler}
+                //   onClick={deletePostHandler}
                 size="lg"
               />
             ) : (
