@@ -67,7 +67,7 @@ export default function Header() {
           {Auth.loggedIn() ? (
             <>
               <LinkBox me={1}>
-                <Button>
+                <Button colorScheme="pink" variant="outline">
                   <LinkOverlay as={RouterLink} to="/profile">
                     Profile
                   </LinkOverlay>
@@ -78,7 +78,7 @@ export default function Header() {
               <Box me={1}><Friendlink names={[]} /></Box>
 
               <LinkBox me={1}>
-                <Button>
+                <Button colorScheme="green" variant="outline">
                   <LinkOverlay onClick={logout}>Logout</LinkOverlay>
                 </Button>
               </LinkBox>
