@@ -6,7 +6,7 @@ import {Flex} from '@chakra-ui/react'
 
 const Login = () => {
     return(
-        <Flex justify="center" align="center" m={4}>
+        <Flex justify="center" align="start">
             <LoginForm />
         </Flex>
     )
