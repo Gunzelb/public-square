@@ -15,6 +15,7 @@ import { ChakraProvider, theme, Grid } from '@chakra-ui/react'; //VStack, Box, G
 // import SignupForm from './components/SignupForm';
 import Header from './components/Header';
 import Home from './components/pages/Home';
+import User from './components/pages/User';
 import LoginSignUp from './components/pages/LoginSignup';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -56,6 +57,9 @@ function App() {
             </Route>
             <Route exact path="/login/">
               <LoginSignUp />
+            </Route>
+            <Route exact path="/profile">
+              <User />
             </Route>
           </Grid>
           {/* </Box> */}
