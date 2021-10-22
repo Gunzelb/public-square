@@ -1,3 +1,8 @@
+/* Hides scrollbar but keeps functionality */
+body::-webkit-scrollbar {
+    display: none;
+  }
+
 .post-container{
     position: relative;
     width: max-content;
@@ -22,7 +27,6 @@
     z-index: 1;
     font-size: 75%;
 }
-
 .header-container{
     display: inline-flex;
     height: max-content;

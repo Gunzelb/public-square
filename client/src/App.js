@@ -1,7 +1,8 @@
-//Library imports
+//React
 import React from 'react';
-import { ChakraProvider, theme, Grid} from '@chakra-ui/react'; //VStack, Box, Grid,
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+//Apollo
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,8 +15,12 @@ import { setContext } from '@apollo/client/link/context';
 // import User from './components/pages/User';
 import Header from './components/Header';
 import Home from './components/pages/Home';
-import Login from './components/pages/LoginSignup';
+import Login from './components/pages/Login';
 import SignUp from './components/pages/Signup';
+
+//Chakra Components and Hooks
+import { ChakraProvider, theme, Grid} from '@chakra-ui/react';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -41,14 +46,19 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+//Extended Chakra theme for bg colors
+
+
+
 function App() {
+
   return (
   <ApolloProvider client={client}>
       <Router>
         <ChakraProvider theme={theme}>
-          {/* <Box textAlign="center" fontSize="xl"> */}
           <Grid minH="100vh">
             <Header />
+            {/* <ColorModeSwitcher /> */}
             {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
             <Route exact path="/">
               <Home />
@@ -60,7 +70,6 @@ function App() {
               <SignUp />
             </Route>
           </Grid>
-          {/* </Box> */}
         </ChakraProvider>
       </Router>
   </ApolloProvider>
