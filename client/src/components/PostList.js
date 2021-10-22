@@ -4,11 +4,11 @@ import moment from 'moment';
 import StyleColorMode from './themedComponents/PostMessageBox';
 import { Flex, Avatar } from '@chakra-ui/react';
 
-const PostList = ({ posts, editPost }) => {
+const PostList = ({ posts }) => {
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
-
+  // let datecreated = moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')
   return (
     <div>
       {posts &&
@@ -26,10 +26,9 @@ const PostList = ({ posts, editPost }) => {
               <StyleColorMode
                 post_id={post._id}
                 message={post.postText}
-                date={moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                date={post.createdAt}
                 isPrivate={post.private}
                 comments={post.comments}
-                editPost={editPost}
               />
             </Flex>
           </div>

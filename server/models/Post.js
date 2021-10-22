@@ -8,13 +8,14 @@ const postSchema = new Schema({
   },
 
   postAuthor: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
+    type: String,
+    required: true,
+    trim: true,
   },
 
   createdAt: {
-      type: Date,
-      default: Date.now
+    type: Date,
+    default: Date.now,
   },
 
   private: Boolean,
@@ -28,12 +29,12 @@ const postSchema = new Schema({
       },
       commentAuthor: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    }
-  ]
+        ref: "User",
+      },
+    },
+  ],
 });
 
-const Post = model('Post', postSchema)
+const Post = model("Post", postSchema);
 
 module.exports = Post;

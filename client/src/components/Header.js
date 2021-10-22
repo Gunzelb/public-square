@@ -8,6 +8,7 @@ import {
   Button,
   ButtonGroup,
   HStack,
+  Link,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 // import PSLogo from "./PSLogoLight.gif";
@@ -15,95 +16,65 @@ import Friendlink from './themedComponents/Friendlink';
 // import LoginSignUp from './components/pages/LoginSignup';
 import StyleColorMode from './themedComponents/Logo';
 
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import Auth from '../utils/auth';
 
-
-export default function Header ({loggedIn, setLoggedIn, names}) { 
-  return(
+export default function Header() {
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
+  return (
     <nav>
-      <Button onClick={() => setLoggedIn(!loggedIn)}>Test</Button>
-      {loggedIn ? (
-        <HStack spacing="auto" padding="1.5%">
-    
-            {/* Search Bar */}
-          <Box>  
-            <InputGroup size="sm">
-              <Input
-                id = "search"
-                width = "10rem"
-                placeholder = "Search..."
-              />
-              <IconButton
-                  id = "searchButton"
-                  aria-label = "search the directory"
-                  icon = { <SearchIcon/> }
-                  onClick = { () => console.log(document.getElementById("search").value) }
-              />
-            </InputGroup>
-          </Box>
-        
-              {/* Logo */}
-          {/* <Box>
-              <Img 
-              height="50px" 
-              maxwidth="200px"
-              // src = {<SwitchLogo/>}
-              src = { PSLogo }
-              />
-          </Box> */}
-          <StyleColorMode />
+      <HStack spacing="auto" padding="1.5%">
+        <Box>
+          <InputGroup size="sm">
+            <Input id="search" width="10rem" placeholder="Search..." />
+            <IconButton
+              id="searchButton"
+              aria-label="search the directory"
+              icon={<SearchIcon />}
+              onClick={() =>
+                console.log(document.getElementById('search').value)
+              }
+            />
+          </InputGroup>
+        </Box>
+        {/* Logo */}
+        <StyleColorMode />
 
-            {/* Nav Links */}
-          <Box>
-            <ButtonGroup>
-              <Button>Home</Button>
-              <Button>Profile</Button>
-              <Friendlink names={names} />
-              <Button onClick={() => setLoggedIn(false)}>Logout</Button>
-            </ButtonGroup>
-          </Box>
-
-        </HStack>
-      ) : (
-        <HStack spacing="auto" padding="1.5%">
-    
-            {/* Search Bar */}
-          <Box>  
-            <InputGroup size="sm">
-              <Input
-                id = "search"
-                width = "10rem"
-                placeholder = "Search..."
-              />
-              <IconButton
-                  id = "searchButton"
-                  aria-label = "search the directory"
-                  icon = { <SearchIcon/> }
-                  onClick = { () => console.log(document.getElementById("search").value) }
-              />
-            </InputGroup>
-          </Box>
-        
-              {/* Logo */}
-          {/* <Box>
-              <Img 
-              height="50px" 
-              maxwidth="200px"
-              // src = {<SwitchLogo/>}
-              src = { PSLogo }
-              />
-              <Button onClick = { () => setLoggedIn(!loggedIn) }>Test</Button>
-          </Box> */}
-          <StyleColorMode />
-
-            {/* Nav Links */}
-          <Box>
-            <ButtonGroup>
-              <Button>Register/Login</Button>
-            </ButtonGroup>
-          </Box>
-
-        </HStack>
-      )}
+        {/* Nav Links */}
+        <Box>
+          <ButtonGroup>
+            <>
+              <Button>
+                <Link as={RouterLink} to="/">
+                  Home
+                </Link>
+              </Button>
+              {Auth.loggedIn() ? (
+                <>
+                  <Button>
+                    <Link as={RouterLink} to="/profile">
+                      Profile
+                    </Link>
+                  </Button>
+                  <Friendlink names={[]} />
+                  <Button>
+                    <Link onClick={logout}>Logout</Link>
+                  </Button>
+                </>
+              ) : (
+                <Button>
+                  <Link as={RouterLink} to="/login">
+                    Login/Signup
+                  </Link>
+                </Button>
+              )}
+            </>
+          </ButtonGroup>
+        </Box>
+      </HStack>
     </nav>
-  );};
+  );
+}
