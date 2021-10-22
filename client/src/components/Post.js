@@ -1,17 +1,22 @@
 import React from "react";
-import { Flex, Box, Container, Avatar } from "@chakra-ui/react";
-//Avatar: Use the name attribute for a default icon (initials based on the name atrr if the src cant load)
+import '../App.css'; 
+import moment from "moment";
+//Components
+import StyleColorMode from './themedComponents/PostMessageBox';
+import { Flex, Avatar} from "@chakra-ui/react"; //Avatar: Use the name attribute for a default icon (initials based on the name atrr if the src cant load)
 
-
-function Post() {
+function Post({post_id, name, message, date, isPrivate, comments, editPost}) {
     return (
-        <Flex direction="row" alignItems="center" justifyContent="center">
-            <Avatar size="lg" border="1px" name="Prosper Otemuyiwa (Enter name of user here)" src="https://bit.ly/prosper-baba" mr={4} />{" "}
-            <Container width="container.lg" border="1px" p={4} rounded={8}>
-                <Box rounded={8} border="1px"> XX:XX on XXX XX, XXXX </Box>
-                
-            </Container>
+    <>
+        {/* {!isPrivate ?  */}
+        <Flex direction="row" alignItems="start" justify="start" justifySelf="start" p={6} textAlign="start">
+            <Avatar size="md" border="1px" name={name} mr={1} />{" "}
+            <StyleColorMode post_id={post_id} message={message} date={moment(date).format('MMMM Do YYYY, h:mm:ss a')} isPrivate={isPrivate} 
+            comments={comments} editPost={editPost}/>
         </Flex>
+        {/* ?:(<></>) */}
+    {/* } */}
+    </>
     )
 };
 
