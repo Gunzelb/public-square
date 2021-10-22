@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/Gunzelb/public-square#readme",
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.3.0"
   }
 }
-

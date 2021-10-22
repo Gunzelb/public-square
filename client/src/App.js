@@ -1,20 +1,20 @@
 //Library imports
 import React from 'react';
 import { ChakraProvider, theme, Grid} from '@chakra-ui/react'; //VStack, Box, Grid,
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Components
-// import LoginForm from './components/LoginForm';
 // import User from './components/pages/User';
-// import SignupForm from './components/SignupForm';
 import Header from './components/Header';
 import Home from './components/pages/Home';
-import LoginSignUp from './components/pages/LoginSignup';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Login from './components/pages/LoginSignup';
+import SignUp from './components/pages/Signup';
 
 function App() {
   return (
+  <ChakraProvider theme={theme}>
     <Router>
-    <ChakraProvider theme={theme}>
+    
       {/* <Box textAlign="center" fontSize="xl"> */}
         <Grid minH="100vh">
             < Header />
@@ -23,12 +23,15 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/login/" >
-              <LoginSignUp />
+              <Login />
+            </Route>
+            <Route exact path="/signup/" >
+              <SignUp />
             </Route>
         </Grid>
       {/* </Box> */}
-    </ChakraProvider>
     </Router>
+    </ChakraProvider>
   );
 }
 

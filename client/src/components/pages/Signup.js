@@ -1,16 +1,14 @@
-// Import React
 import React from "react"
-import LoginForm from "../LoginForm";
+import SignupForm from "../SignupForm"
 import {Flex} from '@chakra-ui/react'
 
-
-const Login = () => {
+const SignUp = () => {
     return(
         <Flex justify="center" align="center" m={4}>
-            <LoginForm />
+            <SignupForm />
         </Flex>
     )
 }
 
 
-export default Login
+export default SignUp
