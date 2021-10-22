@@ -60,11 +60,14 @@ import Post from "./Post";
 // ]
 
 
-function Posts({posts, editPost}) {
+function Posts({posts, editPost, modalHeader, handleInputChange, deletePostHandler, handleSubmit, onChangeMessage }) {
     return (
             <>
             { posts.map((post, i) => (<Post key={i} post_id={post.id} name={post.name} message={post.message} 
-                isPrivate={post.isPrivate} date={post.date} comments={post.comments} editPost={editPost} />)) }
+                isPrivate={post.isPrivate} date={post.date} comments={post.comments} editPost={editPost}
+                modalHeader={modalHeader} handleInputChange={handleInputChange} deletePostHandler={deletePostHandler}
+                handleSubmit={handleSubmit} onChangeMessage={onChangeMessage}   
+            />)) }
             </>
     )
 };

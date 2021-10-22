@@ -5,13 +5,15 @@ dark/light themes of the Post
 
 //Imports
 import React from "react";
-import { useColorModeValue, Text, Flex, Button } from "@chakra-ui/react"; //Box,
+import { useColorModeValue, Text, Flex} from "@chakra-ui/react"; //Box,
 import { Badge } from "@chakra-ui/react"
-import { EditIcon } from "@chakra-ui/icons";
 import Comment from "../Comment";
 import AddComment from "../AddComment";
+import EditPostModal from "../EditPostModal";
 
-function StyleColorMode({ post_id, date, message, isPrivate, comments, editPost}) {
+function StyleColorMode({ post_id, date, message, isPrivate, comments, editPost, modalHeader, 
+    handleInputChange, deletePostHandler, isOpenEdit, onCloseEdit, handleSubmit, onChangeMessage  
+}) {
 
     const bg = useColorModeValue("cyan.200", "cyan.800");
     const bg_gray = useColorModeValue("gray.200", "gray.700");
@@ -40,7 +42,10 @@ function StyleColorMode({ post_id, date, message, isPrivate, comments, editPost}
                     <AddComment display="block" bg={bg} comment_bg={comment_bg} border="1px" comments={comments} />
                 </Flex>
                 <Flex justifyContent="end">
-                    <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button>
+                    {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
+                    <EditPostModal post_id={post_id} message={onChangeMessage} isPrivate={isPrivate} 
+                    editPost={editPost} modalHeader={modalHeader} handleInputChange={handleInputChange} deletePostHandler={deletePostHandler}
+                    isOpenEdit={isOpenEdit} onCloseEdit={onCloseEdit} handleSubmit={handleSubmit} />
                 </Flex>
 
             </Flex>
