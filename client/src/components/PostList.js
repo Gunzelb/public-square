@@ -2,12 +2,14 @@ import React from 'react';
 import moment from 'moment';
 
 import StyleColorMode from './themedComponents/PostMessageBox';
-import { Flex, Avatar } from '@chakra-ui/react';
+import { Flex, Avatar, Text } from '@chakra-ui/react';
 
 const PostList = ({ posts, editPost, modalHeader, handleInputChange, 
   deletePostHandler, handleSubmit, onChangeMessage }) => {
   if (!posts.length) {
-    return <h3 textAlign="center">No Posts Yet</h3>;
+    return (
+      <Text fontSize="xl" marginLeft="25px">No Posts Yet</Text>
+    )
   }
 
   return (

@@ -268,7 +268,7 @@ function User() {
                 >
                     Posts
                 </Heading>
-                <PostList ms={1} posts={user.posts} editPost={editPostHandler} />
+                <PostList ms={1} posts={[]} editPost={editPostHandler} />
             </Flex>
         </>
     );
