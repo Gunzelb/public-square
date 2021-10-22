@@ -295,6 +295,26 @@ function User() {
       </Flex>
     </>
   );
+        <>
+            <Box textAlign="center">
+                <Heading textDecoration="underline" mb={2}>Post in the Square</Heading>
+                {/* <Heading textDecoration="underline" mb={2}>Name Profile</Heading> */}
+                <Flex justifyContent="center">
+                    {/* Add Post Modal renders the Private Post & Public Post buttons*/}
+                    <AddPostModal message={message} setMessage={setMessage} setIsPrivate={setIsPrivate} 
+                    handleInputChange={handleInputChange} handleSubmit={handleSubmit}/>
+                </ Flex>
+            </Box>
+
+            <Flex direction="column" alignContent="start" width="100%">
+                <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
+                <Posts ms={1} posts={posts} editPost={editPost} modalHeader={modalHeader} 
+                handleInputChange={handleInputChange} deletePostHandler={deletePostHandler} 
+                handleSubmit={handleSubmit} onChangeMessage={message}
+                />
+            </Flex>
+        </>
+    )
 }
 
 export default User;
