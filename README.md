@@ -49,4 +49,4 @@ This project is licensed under the MIT license
 
 **Project Collaborators:** [GunzelB](https://github.com/Gunzelb), [s-cabrera](https://github.com/s-cabrera), [jyambot](https://github.com/jyambot), [BMore-Creative](https://github.com/BMore-Creative)
 
-*Feel free to contact me at bamore404@gmail.com for any questions, comments, or suggestions.*
+*Feel free to contact any collaborators for any questions, comments, or suggestions.*
