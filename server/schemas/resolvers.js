@@ -98,12 +98,12 @@ const resolvers = {
           postAuthor: context.user.username,
         });
 
-        await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { posts: post._id } }
         );
 
-        return post;
+        return user;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
