@@ -6,9 +6,6 @@ dark/light themes of the Post
 //React
 import React from 'react';
 
-// //Moment.js
-import moment from 'moment';
-
 //Components
 import Comment from '../Comment';
 import AddComment from '../AddComment';
@@ -20,7 +17,6 @@ import { Badge } from '@chakra-ui/react';
 
 
 
-
 function StyleColorMode({
   post_id,
   date,
@@ -28,6 +24,7 @@ function StyleColorMode({
   isPrivate,
   comments,
   deletePostHandler,
+  page
 }) {
   const bg = useColorModeValue('cyan.200', 'cyan.800');
   const bg_gray = useColorModeValue('gray.200', 'gray.700');
@@ -65,7 +62,7 @@ function StyleColorMode({
         <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
           {message}
         </Text>
-        {(comments.length > 0) && (comments.map((comment, i) => (
+        {comments && (comments.map((comment, i) => (
           <Comment
             key={i}
             name={comment.name}
@@ -83,13 +80,15 @@ function StyleColorMode({
             comments={comments}
           />
         </Flex>
-        <Flex justifyContent="end">
+
+        {page ? null : (<Flex justifyContent="end">
           <EditPostModal
             post_id={post_id}
             message={message}
             deletePostHandler={deletePostHandler}
           />
         </Flex>
+        )}
       </Flex>
     </>
   );

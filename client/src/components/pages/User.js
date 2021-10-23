@@ -53,7 +53,7 @@ function User() {
       </Box>
 
       <Flex direction="column" alignContent="start" width="100%">
-        <PostList ms={1} posts={user.posts} />
+        <PostList ms={1} posts={user.posts} page={false}/>
       </Flex>
     </>
   );

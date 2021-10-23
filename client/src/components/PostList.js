@@ -2,7 +2,7 @@ import React from 'react';
 import StyleColorMode from './themedComponents/PostMessageBox';
 import { Flex, Avatar, Text, Heading } from '@chakra-ui/react';
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, page }) => {
   if (!posts.length) {
     return (
       <Flex direction="column" alignContent="start" width="100%">
@@ -33,6 +33,7 @@ const PostList = ({ posts }) => {
                 date={post.createdAt}
                 isPrivate={post.private}
                 comments={post.comments}
+                page={page}
               />
             </Flex>
             <Text onClick={()=>{console.log(post)}}>Post</Text>
