@@ -38,7 +38,19 @@ npm i
 
 ## Usage
 
-TBD
+1. Login/Signup
+  - 'Login' will redirect the user to the login form for them to login and access their account
+  - 'Signup' will redirect the user to the sign up form to create an account
+2. User Profile
+  - After logging in/signing up, 'Profile' will redirect the user to their individual profile
+  - This profile lists any posts the user has made, public or private
+  - Users are able to make a public post, viewable by everyone, or a private post, viewable only by the user
+3. Friends
+  - 'Friends' will bring up a 'drawer' from the right side of the screen that lists all currently created users, allowing them to be added as friends
+4. Misc.
+  - 'Logout' will log out the user
+  - A light mode/dark mode option is also available on the navbar
+  - Search function is currently unavailable
 
 ## License
 
