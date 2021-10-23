@@ -5,6 +5,7 @@ dark/light themes of the Post
 
 //React
 import React from 'react';
+import Auth from '../../utils/auth';
 
 //Components
 import Comment from '../Comment';
@@ -18,6 +19,7 @@ import { Badge } from '@chakra-ui/react';
 function StyleColorMode({
   post_id,
   date,
+  author,
   message,
   isPrivate,
   comments,
@@ -27,7 +29,12 @@ function StyleColorMode({
   const bg = useColorModeValue('cyan.200', 'cyan.800');
   const bg_gray = useColorModeValue('gray.200', 'gray.700');
   const comment_bg = useColorModeValue('gray.300', 'gray.600');
-
+  let original;
+  if (Auth.loggedIn() && Auth.getProfile().data.username === author) {
+    original = true;
+  } else {
+    original = false;
+  }
   return (
     <>
       <Flex
@@ -60,7 +67,7 @@ function StyleColorMode({
         <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
           {message}
         </Text>
-        {comments.length > 0 &&
+        {comments &&
           comments.map((comment, i) => (
             <Comment
               key={i}
@@ -78,7 +85,7 @@ function StyleColorMode({
             comments={comments}
           />
         </Flex>
-        {page ? null : (
+        {page ? null : !original ? null : (
           <Flex justifyContent="end">
             {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
             <EditPostModal

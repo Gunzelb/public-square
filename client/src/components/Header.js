@@ -14,31 +14,39 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 import Friendlink from './themedComponents/Friendlink';
 import StyleColorMode from './themedComponents/Logo';
-import { useBreakpointValue } from "@chakra-ui/react";
+import { useBreakpointValue } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
-import { LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/react';
 
 import { Link as RouterLink } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 export default function Header() {
-
   //Breakpoint properties
-  const direction = useBreakpointValue({ base: "column", md: "row" })
-  const bg = useColorModeValue("gray.300", "gray.700");
+  const direction = useBreakpointValue({ base: 'column', md: 'row' });
+  const bg = useColorModeValue('gray.300', 'gray.700');
   const borderColor = useColorModeValue('cyan.500', 'cyan.800');
-  
+
   const logout = event => {
     event.preventDefault();
     Auth.logout();
   };
 
-  
-
   return (
-    <Box backgroundColor={bg} borderBottom="2px" borderBottomColor={borderColor} height="max">
-      <Stack className="navbar" direction={direction} spacing="auto" padding="1.5%" borderBottomColor={borderColor}>
+    <Box
+      backgroundColor={bg}
+      borderBottom="2px"
+      borderBottomColor={borderColor}
+      height="max"
+    >
+      <Stack
+        className="navbar"
+        direction={direction}
+        spacing="auto"
+        padding="1.5%"
+        borderBottomColor={borderColor}
+      >
         <Box>
           <InputGroup size="sm">
             <Input id="search" width="10rem" placeholder="Search..." />
@@ -68,14 +76,17 @@ export default function Header() {
             <>
               <LinkBox me={1}>
                 <Button colorScheme="pink" variant="outline">
-                  <LinkOverlay as={RouterLink} to="/profile">
+                  <LinkOverlay as={RouterLink} to="/me">
                     Profile
                   </LinkOverlay>
                 </Button>
-
               </LinkBox>
 
-              <Box me={1}><Friendlink names={[{Firstname :"Spongebob", Lastname:"Squarepants"}]} /></Box>
+              <Box me={1}>
+                <Friendlink
+                  names={[{ Firstname: 'Spongebob', Lastname: 'Squarepants' }]}
+                />
+              </Box>
 
               <LinkBox me={1}>
                 <Button colorScheme="green" variant="outline">
@@ -83,29 +94,27 @@ export default function Header() {
                 </Button>
               </LinkBox>
             </>
-          ) :
-            (
-              <>
-                <LinkBox me={1}>
-                  <Button colorScheme="pink" variant="outline">
-                    <LinkOverlay as={RouterLink} to="/login">
-                      Login
-                    </LinkOverlay>
-                  </Button>
-                </LinkBox>
+          ) : (
+            <>
+              <LinkBox me={1}>
+                <Button colorScheme="pink" variant="outline">
+                  <LinkOverlay as={RouterLink} to="/login">
+                    Login
+                  </LinkOverlay>
+                </Button>
+              </LinkBox>
 
-                <LinkBox me={1}>
-                  <Button colorScheme="green" variant="outline">
-                    <LinkOverlay as={RouterLink} to="/signup">
-                      Signup
-                    </LinkOverlay>
-                  </Button>
-                </LinkBox>
+              <LinkBox me={1}>
+                <Button colorScheme="green" variant="outline">
+                  <LinkOverlay as={RouterLink} to="/signup">
+                    Signup
+                  </LinkOverlay>
+                </Button>
+              </LinkBox>
+            </>
+          )}
 
-              </>
-            )}
-           
-          <ColorModeSwitcher/>
+          <ColorModeSwitcher />
         </Flex>
       </Stack>
     </Box>

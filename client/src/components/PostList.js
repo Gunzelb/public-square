@@ -3,18 +3,16 @@ import StyleColorMode from './themedComponents/PostMessageBox';
 import { Flex, Avatar, Text, Heading } from '@chakra-ui/react';
 
 const PostList = ({ posts, page }) => {
-  if (!posts.length) {
-    return (
-      <Flex direction="column" alignContent="start" width="100%">
-        <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
-        <Text fontSize="xl" marginLeft="25px">No Posts Yet</Text>
-      </Flex>
-    )
-  }
-
   return (
     <Flex direction="column" alignContent="start" width="100%">
-      <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
+      <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>
+        Posts
+      </Heading>
+      {!posts ? (
+        <Text fontSize="xl" marginLeft="25px">
+          No Posts Yet
+        </Text>
+      ) : null}
       {posts &&
         posts.map(post => (
           <div key={post._id}>
@@ -29,6 +27,7 @@ const PostList = ({ posts, page }) => {
               <Avatar size="md" border="1px" name={post.postAuthor} mr={1} />{' '}
               <StyleColorMode
                 post_id={post._id}
+                author={post.postAuthor}
                 message={post.postText}
                 date={post.createdAt}
                 isPrivate={post.private}
@@ -36,7 +35,6 @@ const PostList = ({ posts, page }) => {
                 page={page}
               />
             </Flex>
-            <Text onClick={()=>{console.log(post)}}>Post</Text>
           </div>
         ))}
     </Flex>

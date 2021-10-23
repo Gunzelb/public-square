@@ -30,7 +30,7 @@ function User() {
     return <div>Loading...</div>;
   }
 
-  if (!user?.username) {
+  if (!Auth.loggedIn()) {
     return (
       <h4>
         You must be logged in to access this page. Please log in or sign up
