@@ -18,6 +18,7 @@ function StyleColorMode({
   isPrivate,
   comments,
   deletePostHandler,
+  page,
 }) {
   const bg = useColorModeValue('cyan.200', 'cyan.800');
   const bg_gray = useColorModeValue('gray.200', 'gray.700');
@@ -75,14 +76,16 @@ function StyleColorMode({
             comments={comments}
           />
         </Flex>
-        <Flex justifyContent="end">
-          {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
-          <EditPostModal
-            post_id={post_id}
-            message={message}
-            deletePostHandler={deletePostHandler}
-          />
-        </Flex>
+        {page ? null : (
+          <Flex justifyContent="end">
+            {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
+            <EditPostModal
+              post_id={post_id}
+              message={message}
+              deletePostHandler={deletePostHandler}
+            />
+          </Flex>
+        )}
       </Flex>
     </>
   );

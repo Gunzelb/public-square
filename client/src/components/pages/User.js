@@ -62,7 +62,7 @@ function User() {
         >
           Posts
         </Heading>
-        <PostList ms={1} posts={user.posts} />
+        <PostList ms={1} posts={user.posts} page={false} />
       </Flex>
     </>
   );
