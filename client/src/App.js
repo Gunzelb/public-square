@@ -1,5 +1,8 @@
-//Library imports
+//React
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+//Apollo
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,16 +10,16 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { ChakraProvider, theme, Grid } from '@chakra-ui/react'; //VStack, Box, Grid,
 
 // Components
-// import LoginForm from './components/LoginForm';
-// import User from './components/pages/User';
-// import SignupForm from './components/SignupForm';
+import User from './components/pages/User';
 import Header from './components/Header';
 import Home from './components/pages/Home';
-import LoginSignUp from './components/pages/LoginSignup';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Login from './components/pages/Login';
+import SignUp from './components/pages/Signup';
+
+//Chakra Components and Hooks
+import { ChakraProvider, theme, Grid } from '@chakra-ui/react';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -47,18 +50,26 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <ChakraProvider theme={theme}>
-          {/* <Box textAlign="center" fontSize="xl"> */}
           <Grid minH="100vh">
             <Header />
+            {/* <ColorModeSwitcher /> */}
             {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
             <Route exact path="/">
               <Home />
             </Route>
             <Route exact path="/login/">
-              <LoginSignUp />
+              <Login />
+            </Route>
+            <Route exact path="/signup/">
+              <SignUp />
+            </Route>
+            <Route exact path="/me">
+              <User />
+            </Route>
+            <Route exact path="/profile/:username">
+              <User />
             </Route>
           </Grid>
-          {/* </Box> */}
         </ChakraProvider>
       </Router>
     </ApolloProvider>

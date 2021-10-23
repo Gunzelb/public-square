@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css';
 import {
   Box,
   Input,
@@ -6,104 +7,114 @@ import {
   IconButton,
   InputGroup,
   Button,
-  ButtonGroup,
-  HStack,
+  // ButtonGroup,
+  Stack,
+  Flex,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
-// import PSLogo from "./PSLogoLight.gif";
-import Friendlink from './themedComponents/Friendlink';
-// import LoginSignUp from './components/pages/LoginSignup';
+import UserList from './UserList';
 import StyleColorMode from './themedComponents/Logo';
+import { useBreakpointValue } from '@chakra-ui/react';
+import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { LinkBox, LinkOverlay } from '@chakra-ui/react';
+import { useColorModeValue } from '@chakra-ui/react';
 
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import Auth from '../utils/auth';
 
+export default function Header() {
+  //Breakpoint properties
+  const direction = useBreakpointValue({ base: 'column', md: 'row' });
+  const bg = useColorModeValue('gray.300', 'gray.700');
+  const borderColor = useColorModeValue('cyan.500', 'cyan.800');
 
-export default function Header ({loggedIn, setLoggedIn, names}) { 
-  return(
-    <nav>
-      <Button onClick={() => setLoggedIn(!loggedIn)}>Test</Button>
-      {loggedIn ? (
-        <HStack spacing="auto" padding="1.5%">
-    
-            {/* Search Bar */}
-          <Box>  
-            <InputGroup size="sm">
-              <Input
-                id = "search"
-                width = "10rem"
-                placeholder = "Search..."
-              />
-              <IconButton
-                  id = "searchButton"
-                  aria-label = "search the directory"
-                  icon = { <SearchIcon/> }
-                  onClick = { () => console.log(document.getElementById("search").value) }
-              />
-            </InputGroup>
-          </Box>
-        
-              {/* Logo */}
-          {/* <Box>
-              <Img 
-              height="50px" 
-              maxwidth="200px"
-              // src = {<SwitchLogo/>}
-              src = { PSLogo }
-              />
-          </Box> */}
-          <StyleColorMode />
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
-            {/* Nav Links */}
-          <Box>
-            <ButtonGroup>
-              <Button>Home</Button>
-              <Button>Profile</Button>
-              <Friendlink names={names} />
-              <Button onClick={() => setLoggedIn(false)}>Logout</Button>
-            </ButtonGroup>
-          </Box>
+  return (
+    <Box
+      backgroundColor={bg}
+      borderBottom="2px"
+      borderBottomColor={borderColor}
+      height="max"
+    >
+      <Stack
+        className="navbar"
+        direction={direction}
+        spacing="auto"
+        padding="1.5%"
+        borderBottomColor={borderColor}
+      >
+        <Box>
+          <InputGroup size="sm">
+            <Input id="search" width="10rem" placeholder="Search..." />
+            <IconButton
+              id="searchButton"
+              aria-label="search the directory"
+              icon={<SearchIcon />}
+              onClick={() =>
+                console.log(document.getElementById('search').value)
+              }
+            />
+          </InputGroup>
+        </Box>
+        {/* Logo */}
+        <StyleColorMode />
 
-        </HStack>
-      ) : (
-        <HStack spacing="auto" padding="1.5%">
-    
-            {/* Search Bar */}
-          <Box>  
-            <InputGroup size="sm">
-              <Input
-                id = "search"
-                width = "10rem"
-                placeholder = "Search..."
-              />
-              <IconButton
-                  id = "searchButton"
-                  aria-label = "search the directory"
-                  icon = { <SearchIcon/> }
-                  onClick = { () => console.log(document.getElementById("search").value) }
-              />
-            </InputGroup>
-          </Box>
-        
-              {/* Logo */}
-          {/* <Box>
-              <Img 
-              height="50px" 
-              maxwidth="200px"
-              // src = {<SwitchLogo/>}
-              src = { PSLogo }
-              />
-              <Button onClick = { () => setLoggedIn(!loggedIn) }>Test</Button>
-          </Box> */}
-          <StyleColorMode />
+        {/* Nav Links */}
+        <Flex spacing="auto">
+          <LinkBox me={1}>
+            <Button colorScheme="cyan" variant="outline">
+              <LinkOverlay as={RouterLink} to="/">
+                Home
+              </LinkOverlay>
+            </Button>
+          </LinkBox>
+          {Auth.loggedIn() ? (
+            <>
+              <LinkBox me={1}>
+                <Button colorScheme="pink" variant="outline">
+                  <LinkOverlay as={RouterLink} to="/me">
+                    Profile
+                  </LinkOverlay>
+                </Button>
+              </LinkBox>
 
-            {/* Nav Links */}
-          <Box>
-            <ButtonGroup>
-              <Button>Register/Login</Button>
-            </ButtonGroup>
-          </Box>
+              <Box me={1}>
+                <UserList />
+              </Box>
 
-        </HStack>
-      )}
-    </nav>
-  );};
+              <LinkBox me={1}>
+                <Button colorScheme="green" variant="outline">
+                  <LinkOverlay onClick={logout}>Logout</LinkOverlay>
+                </Button>
+              </LinkBox>
+            </>
+          ) : (
+            <>
+              <LinkBox me={1}>
+                <Button colorScheme="pink" variant="outline">
+                  <LinkOverlay as={RouterLink} to="/login">
+                    Login
+                  </LinkOverlay>
+                </Button>
+              </LinkBox>
+
+              <LinkBox me={1}>
+                <Button colorScheme="green" variant="outline">
+                  <LinkOverlay as={RouterLink} to="/signup">
+                    Signup
+                  </LinkOverlay>
+                </Button>
+              </LinkBox>
+            </>
+          )}
+
+          <ColorModeSwitcher />
+        </Flex>
+      </Stack>
+    </Box>
+  );
+}

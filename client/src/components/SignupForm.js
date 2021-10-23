@@ -72,6 +72,7 @@ function SignupForm() {
       setTitle('Error');
       setDescription('Missing Fields');
       setToastType('error');
+      setStatus(true);
       return;
     }
 
