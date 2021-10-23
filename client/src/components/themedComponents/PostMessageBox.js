@@ -3,13 +3,23 @@ This file is for the sole purpose of customizing the Chakra components to fit ou
 dark/light themes of the Post
 */
 
-//Imports
+//React
 import React from 'react';
-import { useColorModeValue, Text, Flex } from '@chakra-ui/react'; //Box,
-import { Badge } from '@chakra-ui/react';
+
+// //Moment.js
+import moment from 'moment';
+
+//Components
 import Comment from '../Comment';
 import AddComment from '../AddComment';
 import EditPostModal from '../EditPostModal';
+
+//Chakra Components and Hooks
+import { useColorModeValue, Text, Flex } from '@chakra-ui/react';
+import { Badge } from '@chakra-ui/react';
+
+
+
 
 function StyleColorMode({
   post_id,
@@ -55,17 +65,15 @@ function StyleColorMode({
         <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
           {message}
         </Text>
-
-        {comments &&
-          comments.map((comment, i) => (
-            <Comment
-              key={i}
-              name={comment.commentAuthor}
-              message={comment.commentText}
-              bg={comment_bg}
-            />
-          ))}
-
+        {(comments.length > 0) && (comments.map((comment, i) => (
+          <Comment
+            key={i}
+            name={comment.name}
+            message={comment.message}
+            bg={comment_bg}
+          />
+          )))
+        }
         <Flex ms={3} justifySelf="start" direction="column" mt={5}>
           <AddComment
             display="block"
@@ -76,7 +84,6 @@ function StyleColorMode({
           />
         </Flex>
         <Flex justifyContent="end">
-          {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
           <EditPostModal
             post_id={post_id}
             message={message}

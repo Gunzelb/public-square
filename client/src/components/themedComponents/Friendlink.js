@@ -27,15 +27,15 @@ export default function Friendlink ({names}) {
 
     return (
         <>
-        <Button onClick={onOpen}>Friends</Button>
+        <Button colorScheme="purple" variant="outline" onClick={onOpen}>Friends</Button>
         <Drawer placement="right" onClose={onClose} isOpen={isOpen} size="md">
           <DrawerOverlay />
           <DrawerContent>
-            <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+            <DrawerHeader borderBottomWidth="1px">Friends</DrawerHeader>
             <DrawerBody>
 
-            {names.map((name) => (
-                <Flex width="80%" padding="2%" >
+            {names.map((name, i) => (
+                <Flex width="80%" padding="2%" key={i}>
                     <Avatar size="lg" name={name.Firstname + name.Lastname} mr={1} />
                         <Flex border="1px" p={4} rounded={8} width="100%">
                         <Link fontSize="md" src="" paddingRight="10">

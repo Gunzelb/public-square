@@ -1,3 +1,8 @@
+/* Hides scrollbar but keeps functionality */
+body::-webkit-scrollbar {
+    display: none;
+  }
+
 .post-container{
     position: relative;
     width: max-content;
@@ -21,4 +26,40 @@
     right: 0%;
     z-index: 1;
     font-size: 75%;
+}
+.header-container{
+    display: inline-flex;
+    height: max-content;
+    width: 100%;
+    border: 2px solid black;
+}
+
+.header-right-buttons{
+    /* width: max-content;
+    flex: 0;
+    border: 1px solid green;
+    justify-self: end;
+    justify-items: end;
+    align-items: center; */
+    /* display: block; */
+    border: 1px solid blueviolet;
+    float: right;
+}
+
+.header-logo {
+    flex:content;
+    justify-self: center;
+    display: inline;
+    width: max-content;
+    border: 1px solid red;
+    float: center;
+}
+
+.header-search{
+    /* flex: 0;
+    width: max-content;
+    justify-self: flex-start; */
+    /* display: inline; */
+    border: 1px solid blue;
+    float: left;
 }
