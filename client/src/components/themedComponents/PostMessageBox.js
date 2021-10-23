@@ -5,10 +5,7 @@ dark/light themes of the Post
 
 //React
 import React from 'react';
-<<<<<<< HEAD
-=======
 import Auth from '../../utils/auth';
->>>>>>> f9956ad687aa7703baafa0081c558a35a769512d
 
 //Components
 import Comment from '../Comment';
