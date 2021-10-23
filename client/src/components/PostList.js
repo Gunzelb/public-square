@@ -1,15 +1,20 @@
 import React from 'react';
-
 import StyleColorMode from './themedComponents/PostMessageBox';
-import { Flex, Avatar } from '@chakra-ui/react';
+import { Flex, Avatar, Text, Heading } from '@chakra-ui/react';
 
 const PostList = ({ posts, page }) => {
   if (!posts.length) {
-    return <h3>No Posts Yet</h3>;
+    return (
+      <Flex direction="column" alignContent="start" width="100%">
+        <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
+        <Text fontSize="xl" marginLeft="25px">No Posts Yet</Text>
+      </Flex>
+    )
   }
 
   return (
-    <div>
+    <Flex direction="column" alignContent="start" width="100%">
+      <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>
       {posts &&
         posts.map(post => (
           <div key={post._id}>
@@ -31,9 +36,10 @@ const PostList = ({ posts, page }) => {
                 page={page}
               />
             </Flex>
+            <Text onClick={()=>{console.log(post)}}>Post</Text>
           </div>
         ))}
-    </div>
+    </Flex>
   );
 };
 

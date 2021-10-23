@@ -7,8 +7,8 @@ import { QUERY_ME, QUERY_USER } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 //Components
-import PostList from '../PostList';
 import AddPostModal from '../AddPostModal';
+import PostList from '../PostList';
 
 //Chakra Components
 import { Box, Heading, Flex } from '@chakra-ui/react'; // Text, VStack,
@@ -53,15 +53,6 @@ function User() {
       </Box>
 
       <Flex direction="column" alignContent="start" width="100%">
-        <Heading
-          textDecor="underline"
-          as="h1"
-          size="xl"
-          marginLeft="25px"
-          mb={5}
-        >
-          Posts
-        </Heading>
         <PostList ms={1} posts={user.posts} page={false} />
       </Flex>
     </>
