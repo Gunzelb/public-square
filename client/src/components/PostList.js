@@ -1,5 +1,5 @@
 import React from 'react';
-
+import moment from 'moment';
 import StyleColorMode from './themedComponents/PostMessageBox';
 import { Flex, Avatar, Text, Heading } from '@chakra-ui/react';
 
@@ -36,6 +36,7 @@ const PostList = ({ posts }) => {
                 comments={post.comments}
               />
             </Flex>
+            <Text onClick={()=>{console.log(post)}}>Post</Text>
           </div>
         ))}
     </Flex>
