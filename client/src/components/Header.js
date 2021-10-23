@@ -12,7 +12,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
-import Friendlink from './themedComponents/Friendlink';
+import UserList from './UserList';
 import StyleColorMode from './themedComponents/Logo';
 import { useBreakpointValue } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
@@ -83,9 +83,7 @@ export default function Header() {
               </LinkBox>
 
               <Box me={1}>
-                <Friendlink
-                  names={[{ Firstname: 'Spongebob', Lastname: 'Squarepants' }]}
-                />
+                <UserList />
               </Box>
 
               <LinkBox me={1}>

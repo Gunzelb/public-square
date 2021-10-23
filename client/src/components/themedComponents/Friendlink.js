@@ -36,10 +36,10 @@ export default function Friendlink ({names}) {
 
             {names.map((name, i) => (
                 <Flex width="80%" padding="2%" key={i}>
-                    <Avatar size="lg" name={name.Firstname + name.Lastname} mr={1} />
+                    <Avatar size="lg" name={name.username} mr={1} />
                         <Flex border="1px" p={4} rounded={8} width="100%">
                         <Link fontSize="md" src="" paddingRight="10">
-                            {name.Firstname} {name.Lastname}
+                            {name.username}
                         </Link>
                         <Spacer />
                         <IconButton 

@@ -29,7 +29,7 @@ const EditPostModal = ({ post_id, bg, message, deletePostHandler }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [editPost, { error, data }] = useMutation(EDIT_POST, {
+  const [editPost, { error }] = useMutation(EDIT_POST, {
     update(cache, { data: { editPost } }) {
       try {
         // const { posts } = cache.readQuery({ query: QUERY_POSTS });
@@ -38,7 +38,7 @@ const EditPostModal = ({ post_id, bg, message, deletePostHandler }) => {
           id: cache.identify(post_id),
           fields: {
             postText(cachedText) {
-              return (cachedText = data.editPost.postText);
+              return (cachedText = editPost.postText);
             },
           },
         });
