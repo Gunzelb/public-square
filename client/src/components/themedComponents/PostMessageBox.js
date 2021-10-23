@@ -6,9 +6,6 @@ dark/light themes of the Post
 //React
 import React from 'react';
 
-// //Moment.js
-import moment from 'moment';
-
 //Components
 import Comment from '../Comment';
 import AddComment from '../AddComment';

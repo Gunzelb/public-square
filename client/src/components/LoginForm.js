@@ -94,7 +94,7 @@ function LoginForm() {
   };
 
   return (
-    <Flex direction="column" border="1px" borderColor="cyan.600" p={8} rounded={6} width="30%">
+    <Flex direction="column" border="1px" borderColor="cyan.600" p={8} rounded={6} width="30%" justifyContent="center">
       <Heading mb={6} color="cyan.600">
         Log in
       </Heading>
