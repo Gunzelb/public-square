@@ -56,46 +56,15 @@ function StyleColorMode({
           {message}
         </Text>
 
-        {comments.map((comment, i) => (
-          <Comment
-            key={i}
-            name={comment.commentAuthor}
-            message={comment.commentText}
-            bg={comment_bg}
-          />
-        ))}
-
-        <Text
-          className="post-date"
-          bg={bg}
-          p={1}
-          rounded={8}
-          border="1px"
-          mt={3}
-        >
-          {date}
-        </Text>
-        {!isPrivate ? (
-          <Badge width="max-content" alignSelf="end" mb={2} colorScheme="green">
-            Public
-          </Badge>
-        ) : (
-          <Badge width="max-content" alignSelf="end" mb={2} colorScheme="red">
-            Private
-          </Badge>
-        )}
-        <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
-          {message}
-        </Text>
-
-        {comments.map((comment, i) => (
-          <Comment
-            key={i}
-            name={comment.name}
-            message={comment.message}
-            bg={comment_bg}
-          />
-        ))}
+        {comments &&
+          comments.map((comment, i) => (
+            <Comment
+              key={i}
+              name={comment.commentAuthor}
+              message={comment.commentText}
+              bg={comment_bg}
+            />
+          ))}
 
         <Flex ms={3} justifySelf="start" direction="column" mt={5}>
           <AddComment
