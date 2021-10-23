@@ -17,12 +17,7 @@ function StyleColorMode({
   message,
   isPrivate,
   comments,
-  editPost,
-  modalHeader,
-  handleInputChange,
   deletePostHandler,
-  handleSubmit,
-  onChangeMessage,
 }) {
   const bg = useColorModeValue('cyan.200', 'cyan.800');
   const bg_gray = useColorModeValue('gray.200', 'gray.700');
@@ -115,13 +110,8 @@ function StyleColorMode({
           {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
           <EditPostModal
             post_id={post_id}
-            message={onChangeMessage}
-            isPrivate={isPrivate}
-            editPost={editPost}
-            modalHeader={modalHeader}
-            handleInputChange={handleInputChange}
+            message={message}
             deletePostHandler={deletePostHandler}
-            handleSubmit={handleSubmit}
           />
         </Flex>
       </Flex>

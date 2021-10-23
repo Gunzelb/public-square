@@ -12,7 +12,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 // Components
-// import User from './components/pages/User';
+import User from './components/pages/User';
 import Header from './components/Header';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
@@ -20,7 +20,6 @@ import SignUp from './components/pages/Signup';
 
 //Chakra Components and Hooks
 import { ChakraProvider, theme, Grid} from '@chakra-ui/react';
-
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -46,10 +45,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-//Extended Chakra theme for bg colors
-
-
-
 function App() {
 
   return (
@@ -68,6 +63,9 @@ function App() {
             </Route>
             <Route exact path="/signup/" >
               <SignUp />
+            </Route>
+            <Route exact path="/profile">
+              <User />
             </Route>
           </Grid>
         </ChakraProvider>
