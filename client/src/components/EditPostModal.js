@@ -13,14 +13,15 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { FormControl, Input, Flex, Spacer, Button } from '@chakra-ui/react';
-import { IconButton } from '@chakra-ui/react';
+
 
 //Chakra Hooks
 import { useDisclosure } from '@chakra-ui/react';
 
 //Chakra Icons
-import { DeleteIcon } from '@chakra-ui/icons';
+
 import { EditIcon } from '@chakra-ui/icons';
+import DeleteBtn from './DeleteBtn';
 
 const EditPostModal = ({ post_id, bg, message, deletePostHandler }) => {
   const [postText, setPostText] = useState(message);
@@ -85,10 +86,9 @@ const EditPostModal = ({ post_id, bg, message, deletePostHandler }) => {
       } catch (err) {
         console.log(err);
         console.log(error);
-      }
-
-      onClose();
+      }  
     }
+    onClose();
   };
 
   return (
@@ -124,16 +124,8 @@ const EditPostModal = ({ post_id, bg, message, deletePostHandler }) => {
             </FormControl>
           </ModalBody>
           <Flex p={3}>
-            <IconButton
-              variant="ghost"
-              colorScheme="pink"
-              icon={<DeleteIcon />}
-              onClick={e => {
-                deletePostHandler(e, post_id);
-                onClose();
-              }}
-              size="lg"
-            />
+
+            <DeleteBtn onClose={onClose} post_id={post_id}/>
 
             <Spacer />
             <Button
