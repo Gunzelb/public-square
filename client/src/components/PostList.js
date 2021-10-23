@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 import StyleColorMode from './themedComponents/PostMessageBox';
 import { Flex, Avatar } from '@chakra-ui/react';
@@ -8,7 +7,7 @@ const PostList = ({ posts }) => {
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
-  // let datecreated = moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')
+
   return (
     <div>
       {posts &&
