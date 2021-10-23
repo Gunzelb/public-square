@@ -7,7 +7,7 @@ import { QUERY_ME, QUERY_USER } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 //Components
-import AddPostModal from "../AddPostModal";
+import AddPostModal from '../AddPostModal';
 import PostList from '../PostList';
 
 //Chakra Components
@@ -30,7 +30,7 @@ function User() {
     return <div>Loading...</div>;
   }
 
-  if (!user?.username) {
+  if (!Auth.loggedIn()) {
     return (
       <h4>
         You must be logged in to access this page. Please log in or sign up
@@ -53,7 +53,7 @@ function User() {
       </Box>
 
       <Flex direction="column" alignContent="start" width="100%">
-        <PostList ms={1} posts={user.posts} page={false}/>
+        <PostList ms={1} posts={user.posts} page={false} />
       </Flex>
     </>
   );

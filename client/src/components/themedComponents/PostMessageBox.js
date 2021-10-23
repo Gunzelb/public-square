@@ -5,6 +5,7 @@ dark/light themes of the Post
 
 //React
 import React from 'react';
+import Auth from '../../utils/auth';
 
 //Components
 import Comment from '../Comment';
@@ -15,21 +16,25 @@ import EditPostModal from '../EditPostModal';
 import { useColorModeValue, Text, Flex } from '@chakra-ui/react';
 import { Badge } from '@chakra-ui/react';
 
-
-
 function StyleColorMode({
   post_id,
   date,
+  author,
   message,
   isPrivate,
   comments,
   deletePostHandler,
-  page
+  page,
 }) {
   const bg = useColorModeValue('cyan.200', 'cyan.800');
   const bg_gray = useColorModeValue('gray.200', 'gray.700');
   const comment_bg = useColorModeValue('gray.300', 'gray.600');
-
+  let original;
+  if (Auth.loggedIn() && Auth.getProfile().data.username === author) {
+    original = true;
+  } else {
+    original = false;
+  }
   return (
     <>
       <Flex
@@ -62,15 +67,15 @@ function StyleColorMode({
         <Text border="1px" align="start" bg={bg} rounded={8} m={2} p={2}>
           {message}
         </Text>
-        {comments && (comments.map((comment, i) => (
-          <Comment
-            key={i}
-            name={comment.name}
-            message={comment.message}
-            bg={comment_bg}
-          />
-          )))
-        }
+        {comments &&
+          comments.map((comment, i) => (
+            <Comment
+              key={i}
+              name={comment.name}
+              message={comment.message}
+              bg={comment_bg}
+            />
+          ))}
         <Flex ms={3} justifySelf="start" direction="column" mt={5}>
           <AddComment
             display="block"
@@ -80,14 +85,15 @@ function StyleColorMode({
             comments={comments}
           />
         </Flex>
-
-        {page ? null : (<Flex justifyContent="end">
-          <EditPostModal
-            post_id={post_id}
-            message={message}
-            deletePostHandler={deletePostHandler}
-          />
-        </Flex>
+        {page ? null : !original ? null : (
+          <Flex justifyContent="end">
+            {/* <Button  className="post-editBtn" size="sm" bg={bg} variant="solid" onClick={(e) => {editPost(e, post_id, isPrivate)}}> <EditIcon /></Button> */}
+            <EditPostModal
+              post_id={post_id}
+              message={message}
+              deletePostHandler={deletePostHandler}
+            />
+          </Flex>
         )}
       </Flex>
     </>

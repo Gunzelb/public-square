@@ -11,7 +11,13 @@ const Home = () => {
 
   return (
     <main>
-      <div>{loading ? <div>Loading...</div> : <PostList posts={posts} page={true} />}</div>
+      <div>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <PostList posts={posts} page={true} />
+        )}
+      </div>
     </main>
   );
 };

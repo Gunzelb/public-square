@@ -19,7 +19,7 @@ import Login from './components/pages/Login';
 import SignUp from './components/pages/Signup';
 
 //Chakra Components and Hooks
-import { ChakraProvider, theme, Grid} from '@chakra-ui/react';
+import { ChakraProvider, theme, Grid } from '@chakra-ui/react';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -46,9 +46,8 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
-  <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
       <Router>
         <ChakraProvider theme={theme}>
           <Grid minH="100vh">
@@ -58,19 +57,22 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/login/" >
+            <Route exact path="/login/">
               <Login />
             </Route>
-            <Route exact path="/signup/" >
+            <Route exact path="/signup/">
               <SignUp />
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/me">
+              <User />
+            </Route>
+            <Route exact path="/profile/:username">
               <User />
             </Route>
           </Grid>
         </ChakraProvider>
       </Router>
-  </ApolloProvider>
+    </ApolloProvider>
   );
 }
 
