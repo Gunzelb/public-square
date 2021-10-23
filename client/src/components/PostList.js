@@ -1,13 +1,11 @@
 import React from 'react';
 import StyleColorMode from './themedComponents/PostMessageBox';
-import { Flex, Avatar, Text, Heading } from '@chakra-ui/react';
+import { Flex, Avatar, Text } from '@chakra-ui/react';
 
 const PostList = ({ posts, page }) => {
+
   return (
-    <Flex direction="column" alignContent="start" width="100%">
-      <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>
-        Posts
-      </Heading>
+    <Flex direction="column" alignContent="center" width="100%" textAlign="center">
       {!posts ? (
         <Text fontSize="xl" marginLeft="25px">
           No Posts Yet

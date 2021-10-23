@@ -8,6 +8,7 @@ import { useToast } from '@chakra-ui/react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import {validateEmail} from '../utils/helpers';
 
 function SignupForm() {
   //Toast variables
@@ -71,6 +72,15 @@ function SignupForm() {
     ) {
       setTitle('Error');
       setDescription('Missing Fields');
+      setToastType('error');
+      setStatus(true);
+      return;
+    }
+
+    if(!validateEmail(formState.email)){
+      console.log('Invalid Email');
+      setTitle('Error');
+      setDescription('Invalid Email');
       setToastType('error');
       setStatus(true);
       return;

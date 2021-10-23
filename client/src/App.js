@@ -66,7 +66,7 @@ function App() {
             <Route exact path="/me">
               <User />
             </Route>
-            <Route exact path="/profile/:username">
+            <Route path="/profile/:username">
               <User />
             </Route>
           </Grid>

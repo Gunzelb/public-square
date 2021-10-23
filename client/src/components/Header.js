@@ -1,5 +1,10 @@
+// React
 import React from 'react';
+// import { Redirect} from 'react-router-dom';
+//Styling
 import '../App.css';
+
+//Chakra Components
 import {
   Box,
   Input,
@@ -18,6 +23,7 @@ import { useBreakpointValue } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/react';
+
 
 import { Link as RouterLink } from 'react-router-dom';
 import Auth from '../utils/auth';
@@ -54,8 +60,11 @@ export default function Header() {
               id="searchButton"
               aria-label="search the directory"
               icon={<SearchIcon />}
-              onClick={() =>
-                console.log(document.getElementById('search').value)
+              onClick={(e) =>
+                {
+                  e.preventDefault()
+                  document.location.replace(`/profile/${document.getElementById("search").value}`)
+                }
               }
             />
           </InputGroup>
