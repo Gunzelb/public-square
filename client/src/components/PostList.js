@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import StyleColorMode from './themedComponents/PostMessageBox';
 import { Flex, Avatar, Text, Heading } from '@chakra-ui/react';
 
@@ -12,7 +11,7 @@ const PostList = ({ posts }) => {
       </Flex>
     )
   }
-  // let datecreated = moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a')
+
   return (
     <Flex direction="column" alignContent="start" width="100%">
       <Heading textDecor="underline" as="h1" size="xl" marginLeft="25px" mb={5}>Posts</Heading>

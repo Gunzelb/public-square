@@ -75,7 +75,7 @@ export default function Header() {
 
               </LinkBox>
 
-              <Box me={1}><Friendlink names={[]} /></Box>
+              <Box me={1}><Friendlink names={[{Firstname :"Spongebob", Lastname:"Squarepants"}]} /></Box>
 
               <LinkBox me={1}>
                 <Button colorScheme="green" variant="outline">

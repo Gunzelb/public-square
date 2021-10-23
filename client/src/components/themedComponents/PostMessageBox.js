@@ -32,8 +32,7 @@ function StyleColorMode({
   const bg = useColorModeValue('cyan.200', 'cyan.800');
   const bg_gray = useColorModeValue('gray.200', 'gray.700');
   const comment_bg = useColorModeValue('gray.300', 'gray.600');
-  const convertedDate = moment(date);
-  const dateText = `${moment(date).format("MMMM DD, YYYY")} @ ${moment(convertedDate).format("h:mm a")}`; //`${moment(date).format('MMMM Do YYYY')} @ ${moment(date).format('h:mm a')
+
   return (
     <>
       <Flex
@@ -52,7 +51,7 @@ function StyleColorMode({
           border="1px"
           mt={3}
         >
-          {dateText}
+          {date}
         </Text>
         {!isPrivate ? (
           <Badge width="max-content" alignSelf="end" mb={2} colorScheme="green">
