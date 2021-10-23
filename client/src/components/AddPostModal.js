@@ -128,7 +128,7 @@ const AddPostModal = () => {
               variant="outline"
               onClick={e => {
                 handleSubmit(e);
-                onClose();
+                document.location.reload();
               }}
             >
               Submit

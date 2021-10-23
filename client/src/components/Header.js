@@ -1,7 +1,6 @@
 // React
 import React from 'react';
-import { Redirect} from 'react-router-dom';
-
+// import { Redirect} from 'react-router-dom';
 //Styling
 import '../App.css';
 
@@ -63,9 +62,9 @@ export default function Header() {
               icon={<SearchIcon />}
               onClick={(e) =>
                 {
-                  const username = `/profile/?${document.getElementById("search").value}`;
-                  console.log(document.getElementById("search").value);
-                  return <Redirect to={username} />}
+                  e.preventDefault()
+                  document.location.replace(`/profile/${document.getElementById("search").value}`)
+                }
               }
             />
           </InputGroup>
